@@ -39,7 +39,7 @@ test_contract:
 	npm run test:contract
 
 .PHONY: before_commit
-before_commit: lint
+before_commit: lint gas format_contract	format_check	test_contract
 
 .PHONY: start_frontend
 start_frontend:
