@@ -1,0 +1,46 @@
+{
+  "name": "ETHTokyo2024",
+  "version": "1.0.0",
+  "description": "ETHTokyo2024 repository",
+  "main": "index.js",
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "clean": "npx rimraf node_modules out",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:contract": "forge test -vvv --root backend",
+    "format:contract": "forge fmt --root backend",
+    "gas": "forge snapshot --root backend",
+    "format": "prettier --write '**/**/*.{ts,tsx,css}'",
+    "format:check": "prettier --check '**/**/*.{ts,tsx,js,jsx,css}'",
+    "lint": "npx textlint '**/*.md'",
+    "lint-staged": "lint-staged",
+    "husky": "husky install",
+    "start": "concurrently \"npm start --prefix frontend\" \"npm start --prefix backend\"",
+    "install-all": "npm install && npm install --prefix frontend"
+  },
+  "keywords": [],
+  "author": "Susumu Tomita <oyter880@gmail.com> (https://susumutomita.netlify.app/)",
+  "license": "MIT",
+  "dependencies": {
+    "typescript": "^5.4.5"
+  },
+  "devDependencies": {
+    "@marp-team/marp-cli": "^3.4.0",
+    "concurrently": "^8.2.2",
+    "husky": "^9.1.4",
+    "prettier": "^3.3.0",
+    "rimraf": "^6.0.1",
+    "textlint": "^14.0.5",
+    "textlint-rule-ja-no-abusage": "^3.0.0",
+    "textlint-rule-ja-no-inappropriate-words": "^2.0.0",
+    "textlint-rule-no-double-negative-ja": "^2.0.1",
+    "textlint-rule-no-dropping-the-ra": "^3.0.0",
+    "textlint-rule-prefer-tari-tari": "^1.0.3",
+    "textlint-rule-preset-ja-spacing": "^2.2.0",
+    "textlint-rule-preset-ja-technical-writing": "^10.0.1",
+    "textlint-rule-spellcheck-tech-word": "^5.0.0"
+  }
+}
