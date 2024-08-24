@@ -9,6 +9,7 @@ contract CateringEscrowTest is Test {
     address payable public provider = payable(address(0x1));
     address payable public customer = payable(address(this));
     address public voter = address(0x2);
+    address public tokenRecipient = address(0x3);
 
     receive() external payable {}
 
@@ -110,5 +111,15 @@ contract CateringEscrowTest is Test {
         assertEq(profiles[0].name, "Chef A");
         assertEq(profiles[0].description, "Expert in Italian Cuisine");
         assertEq(profiles[0].specialty, "Pasta");
+    }
+
+    function test_SendToken() public {
+        uint256 initialBalance = escrow.balanceOf(tokenRecipient);
+        uint256 amount = 100;
+
+        escrow.sendToken(tokenRecipient, amount);
+
+        uint256 newBalance = escrow.balanceOf(tokenRecipient);
+        assertEq(newBalance, initialBalance + amount);
     }
 }

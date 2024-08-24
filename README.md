@@ -109,9 +109,9 @@ After deploying to the Scroll Testnet, you can verify the contract using ScrollS
 
 ### Deployed Contract Information
 
-- **Contract Address**: `0x624669da92762546073a8B00579835216F5FD4B4`
-- **ScrollScan Link**: [View Contract on ScrollScan](https://sepolia.scrollscan.com/address/0x624669da92762546073a8B00579835216F5FD4B4)
-- **Transaction Hash**: `0x371b9e7de8bf720b8563a991cb0fffbbf2f9b9d36260037c2815134ad37c2afa`
+- **Contract Address**: `0x324cf87A3A2B92FADBCDe6798c1a7ac9949c973b`
+- **ScrollScan Link**: [View Contract on ScrollScan](https://sepolia.scrollscan.com/address/0x324cf87A3A2B92FADBCDe6798c1a7ac9949c973b)
+- **Transaction Hash**: `0xfb74f2fd2d570b7e2e0ec3b274886908a171b3a08f077b560372d4353f099f25`
 
 ![ScrollScan Screenshot](images/Scrollprize.png)
 

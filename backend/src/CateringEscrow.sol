@@ -1,9 +1,10 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.13;
 
+import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract CateringEscrow is Ownable {
+contract CateringEscrow is ERC20, Ownable {
     uint256 private serviceIdCounter;
     uint256 private chefIdCounter;
 
@@ -42,7 +43,7 @@ contract CateringEscrow is Ownable {
     event Voted(address indexed chef, uint256 voteCount);
 
     modifier onlyCustomer(uint256 serviceId) {
-        require(msg.sender == services[serviceId].customer, "Only customer can call this function");
+        require(msg.sender == services[serviceId].customer, "Only customer can call this function!");
         _;
     }
 
@@ -51,9 +52,10 @@ contract CateringEscrow is Ownable {
         _;
     }
 
-    constructor() Ownable(msg.sender) {
+    constructor() ERC20("ChefToken", "CHEF") Ownable(msg.sender) {
         serviceIdCounter = 0;
         chefIdCounter = 0;
+        _mint(msg.sender, 1000000 * 10 ** decimals());
     }
 
     function createService(address payable _provider) external payable {
@@ -148,6 +150,10 @@ contract CateringEscrow is Ownable {
         emit ServiceCancelled(serviceId);
 
         delete services[serviceId];
+    }
+
+    function sendToken(address recipient, uint256 amount) external {
+        _transfer(msg.sender, recipient, amount);
     }
 
     receive() external payable {
