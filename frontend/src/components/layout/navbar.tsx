@@ -27,10 +27,10 @@ export default function NavBar({ session }: { session: Session | null }) {
             <Image
               src="/logo.png"
               alt="ChefConnect logo"
-              width="30"
-              height="30"
+              width={30}
+              height={30}
               className="mr-2 rounded-sm"
-            ></Image>
+            />
             <p>ChefConnect</p>
           </Link>
           <div>
