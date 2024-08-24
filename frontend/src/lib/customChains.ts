@@ -45,3 +45,25 @@ export const bscTestnet: Chain = {
   },
   testnet: true,
 };
+
+export const greenfieldTestnet: Chain = {
+  id: 5600,
+  name: "Greenfield Mekong Testnet",
+  nativeCurrency: {
+    decimals: 18,
+    name: "BNB",
+    symbol: "BNB",
+  },
+  rpcUrls: {
+    default: {
+      http: ["https://gnfd-testnet-fullnode-tendermint-us.bnbchain.org"],
+    },
+  },
+  blockExplorers: {
+    default: {
+      name: "GreenFieldScan",
+      url: "https://testnet.greenfieldscan.com/",
+    },
+  },
+  testnet: true,
+};
