@@ -25,6 +25,7 @@
   "author": "Susumu Tomita <oyter880@gmail.com> (https://susumutomita.netlify.app/)",
   "license": "MIT",
   "dependencies": {
+    "@openzeppelin/contracts": "^5.0.2",
     "typescript": "^5.4.5"
   },
   "devDependencies": {
