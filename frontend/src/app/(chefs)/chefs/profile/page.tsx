@@ -1,125 +1,68 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import ChefProfileForm from "../../../../components/ChefProfileForm";
-import { client, selectSp } from "../../../../lib/client";
-import { getOffchainAuthKeys } from "../../../../lib/offchainAuth";
-import { useAccount } from "wagmi";
-import { VisibilityType } from "@bnb-chain/greenfield-js-sdk";
-import CryptoJS from "crypto-js"; // CryptoJS を追加
+import React, { useState } from "react";
+import { BrowserProvider, Contract } from "ethers";
+import { abi, contractAddress } from "../../../constants/contract"; // スマートコントラクトのABIとアドレス
+import ChefProfileForm from "../../../../components/ChefProfileForm"; // 既存のフォームを使用
 
-// Define the type for profile data
 type ProfileData = {
   name: string;
   description: string;
   specialty: string;
 };
 
-export const dynamic = "force-dynamic"; // 動的にクライアントサイドで実行
-
 export default function ChefProfilePage() {
-  const { address, connector } = useAccount();
+  const [submitting, setSubmitting] = useState(false);
   const [initialData, setInitialData] = useState<ProfileData>({
     name: "",
     description: "",
     specialty: "",
   });
+  const [error, setError] = useState<string | null>(null);
 
-  const [loading, setLoading] = useState(true); // ローディング状態
+  const handleSubmit = async (profileData: ProfileData) => {
+    console.log("Submitting profile data:", profileData);
+    setSubmitting(true);
+    setError(null);
 
-  useEffect(() => {
-    const fetchProfileData = async () => {
-      try {
-        const response = await fetch("/api/chefs/profile");
-        if (!response.ok) {
-          throw new Error("Failed to fetch profile data");
-        }
-        const data = await response.json();
-        setInitialData(data);
-      } catch (error) {
-        console.error("Failed to fetch profile data:", error);
-        alert("Failed to fetch profile data. Please try again later.");
-      } finally {
-        setLoading(false); // ローディング終了
-      }
-    };
-
-    fetchProfileData();
-  }, []);
-
-  const uploadToGreenfield = async (profileData: ProfileData) => {
-    if (!address) {
-      alert("Wallet address is missing");
+    if (!window.ethereum) {
+      setError("MetaMask is not installed!");
+      setSubmitting(false);
       return;
     }
 
     try {
-      const spInfo = await selectSp();
-      const provider = await connector?.getProvider();
-      const offChainData = await getOffchainAuthKeys(address, provider);
+      await window.ethereum.request({ method: "eth_requestAccounts" });
 
-      if (!offChainData) {
-        alert("No offchain auth data available");
-        return;
-      }
+      const provider = new BrowserProvider(window.ethereum);
+      const signer = await provider.getSigner();
+      const contract = new Contract(contractAddress, abi, signer);
 
-      const fileContent = JSON.stringify(profileData);
-      const file = new File([fileContent], `${address}.json`, {
-        type: "application/json",
-      });
-
-      const res = await client.object.delegateUploadObject(
-        {
-          bucketName: "chefs",
-          objectName: `${address}.json`,
-          body: file,
-          delegatedOpts: {
-            visibility: VisibilityType.VISIBILITY_TYPE_PUBLIC_READ,
-          },
-        },
-        {
-          type: "EDDSA",
-          address: address,
-          domain: window.location.origin,
-          seed: offChainData.seedString,
-        },
+      // コントラクトにデータを送信
+      const tx = await contract.submitChefProfile(
+        profileData.name,
+        profileData.description,
+        profileData.specialty,
       );
 
-      if (res.code === 0) {
-        alert("Profile uploaded successfully to Greenfield!");
-        window.location.href = "/";
-      }
-    } catch (err) {
-      console.error("Failed to upload profile to Greenfield:", err);
-      alert("Failed to upload profile to Greenfield. Please try again later.");
-    }
-  };
-
-  const handleSubmit = async (profileData: ProfileData) => {
-    try {
-      const response = await fetch("/api/chefs/profile", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(profileData),
-      });
-
-      if (response.ok) {
-        alert("Profile updated successfully!");
-        await uploadToGreenfield(profileData);
+      await tx.wait(); // トランザクションが完了するのを待つ
+      alert("Profile submitted successfully!");
+    } catch (error: any) {
+      console.error("Error submitting profile:", error);
+      if (error.code === 4001) {
+        setError("MetaMask access denied");
       } else {
-        alert("Failed to update profile.");
+        setError("Failed to submit profile");
       }
-    } catch (error) {
-      console.error("Failed to update profile:", error);
-      alert("Failed to update profile. Please try again later.");
+    } finally {
+      setSubmitting(false);
     }
   };
 
-  if (loading) {
-    return <div>Loading...</div>; // ローディング表示
-  }
-
-  return <ChefProfileForm onSubmit={handleSubmit} initialData={initialData} />;
+  return (
+    <ChefProfileForm
+      onSubmit={handleSubmit}
+      initialData={{ name: "Jiro", description: "Toro", specialty: "Sushi" }}
+    />
+  );
 }

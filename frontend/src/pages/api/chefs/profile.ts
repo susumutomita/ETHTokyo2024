@@ -18,6 +18,7 @@ export default async function handler(
       return res.status(400).json({ error: "All fields are required." });
     }
 
+    // フロントエンドからのデータを受け取り、サーバーサイドで保存
     chefProfile = { name, description, specialty };
     res.status(200).json({ message: "Profile updated successfully" });
   } else {

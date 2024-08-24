@@ -1,7 +1,6 @@
 import { client, getAllSps } from "./client";
 import { GREEN_CHAIN_ID } from "./env";
 import { IReturnOffChainAuthKeyPairAndUpload } from "@bnb-chain/greenfield-js-sdk";
-import CryptoJS from "crypto-js";
 
 /**
  * generate off-chain auth key pair and upload public key to sp
@@ -11,9 +10,7 @@ export const getOffchainAuthKeys = async (address: string, provider: any) => {
 
   if (storageResStr) {
     const storageRes = JSON.parse(
-      CryptoJS.AES.decrypt(storageResStr, "secret-key").toString(
-        CryptoJS.enc.Utf8,
-      ),
+      storageResStr,
     ) as IReturnOffChainAuthKeyPairAndUpload;
     if (storageRes.expirationTime < Date.now()) {
       alert("Your auth key has expired, please generate a new one");
@@ -42,9 +39,6 @@ export const getOffchainAuthKeys = async (address: string, provider: any) => {
     throw offchainAuthRes;
   }
 
-  localStorage.setItem(
-    address,
-    CryptoJS.AES.encrypt(JSON.stringify(offChainData), "secret-key").toString(),
-  );
+  localStorage.setItem(address, JSON.stringify(offChainData));
   return offChainData;
 };

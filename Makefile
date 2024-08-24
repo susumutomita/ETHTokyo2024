@@ -49,7 +49,7 @@ export_pdf:        # Export pitch deck to PDF using Marp
 	npx marp pitch_deck.md --pdf --allow-local-files --html
 
 # Pre-commit Checks
-before_commit: lint	gas	format	format_contract	format_check	test_contract
+before_commit: lint	gas	format	format_contract	format_check	test_contract	build_frontend	build_backend
 
 # Help
 help:              # Show this help message

@@ -1,13 +1,14 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.13;
 
-import {Test, console} from "forge-std/Test.sol";
-import {CateringEscrow} from "../src/CateringEscrow.sol";
+import "forge-std/Test.sol";
+import "../src/CateringEscrow.sol";
 
 contract CateringEscrowTest is Test {
     CateringEscrow public escrow;
     address payable public provider = payable(address(0x1));
     address payable public customer = payable(address(this));
+    address public voter = address(0x2);
 
     receive() external payable {}
 
@@ -74,5 +75,38 @@ contract CateringEscrowTest is Test {
 
         (uint256 id,,,,) = escrow.services(1);
         assertEq(id, 0, "Service was not properly cancelled and deleted");
+    }
+
+    function test_SubmitChefProfile() public {
+        escrow.submitChefProfile("Chef A", "Expert in Italian Cuisine", "Pasta");
+        (string memory name, string memory description, string memory specialty, uint256 voteCount) =
+            escrow.chefProfiles(address(this));
+
+        assertEq(name, "Chef A");
+        assertEq(description, "Expert in Italian Cuisine");
+        assertEq(specialty, "Pasta");
+        assertEq(voteCount, 0);
+    }
+
+    function test_VoteForChef() public {
+        escrow.submitChefProfile("Chef B", "Expert in Japanese Cuisine", "Sushi");
+
+        vm.prank(voter);
+        escrow.vote(address(this));
+
+        (,,, uint256 voteCount) = escrow.chefProfiles(address(this));
+        assertEq(voteCount, 1);
+    }
+
+    function test_GetChefProfiles() public {
+        escrow.submitChefProfile("Chef A", "Expert in Italian Cuisine", "Pasta");
+
+        (address[] memory addresses, CateringEscrow.ChefProfile[] memory profiles) = escrow.getChefProfiles();
+
+        assertEq(addresses.length, 1);
+        assertEq(profiles.length, 1);
+        assertEq(profiles[0].name, "Chef A");
+        assertEq(profiles[0].description, "Expert in Italian Cuisine");
+        assertEq(profiles[0].specialty, "Pasta");
     }
 }
