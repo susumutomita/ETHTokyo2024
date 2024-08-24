@@ -25,7 +25,13 @@ export const getAllSps = async () => {
 };
 
 export const selectSp = async () => {
-  const finalSps = await getSps();
+  let finalSps;
+  try {
+    finalSps = await getSps();
+  } catch (error) {
+    console.error("Failed to retrieve storage providers:", error);
+    return null;
+  }
 
   const selectIndex = Math.floor(Math.random() * finalSps.length);
 
