@@ -74,9 +74,12 @@ contract CateringEscrow is Ownable {
     }
 
     function submitChefProfile(string memory _name, string memory _description, string memory _specialty) external {
-        require(bytes(_name).length > 0, "Name is required");
-        require(bytes(_description).length > 0, "Description is required");
-        require(bytes(_specialty).length > 0, "Specialty is required");
+        uint256 nameLength = bytes(_name).length;
+        uint256 descriptionLength = bytes(_description).length;
+        uint256 specialtyLength = bytes(_specialty).length;
+        require(nameLength > 0, "Name is required");
+        require(descriptionLength > 0, "Description is required");
+        require(specialtyLength > 0, "Specialty is required");
 
         if (bytes(chefProfiles[msg.sender].name).length == 0) {
             chefAddresses.push(msg.sender); // 新しいシェフの場合、アドレスを追加
