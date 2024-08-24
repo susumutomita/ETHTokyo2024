@@ -3,21 +3,19 @@
 import Image from "next/image";
 import Link from "next/link";
 import useScroll from "@/lib/hooks/use-scroll";
-import { useSignInModal } from "./sign-in-modal";
 import { ConnectKitButton } from "connectkit";
 
 export default function NavBar() {
-  const { SignInModal, setShowSignInModal } = useSignInModal();
   const scrolled = useScroll(50);
 
   return (
     <>
-      <SignInModal />
       <div
-        className={`fixed top-0 w-full flex justify-center ${scrolled
-          ? "border-b border-gray-200 bg-white/50 backdrop-blur-xl"
-          : "bg-white/0"
-          } z-30 transition-all`}
+        className={`fixed top-0 w-full flex justify-center ${
+          scrolled
+            ? "border-b border-gray-200 bg-white/50 backdrop-blur-xl"
+            : "bg-white/0"
+        } z-30 transition-all`}
       >
         <div className="mx-5 flex h-16 max-w-screen-xl items-center justify-between w-full">
           <Link href="/" className="flex items-center font-display text-2xl">
@@ -30,7 +28,7 @@ export default function NavBar() {
             />
             <p>ChefConnect</p>
           </Link>
-          <div>
+          <div className="flex items-center space-x-4">
             <ConnectKitButton />
           </div>
         </div>

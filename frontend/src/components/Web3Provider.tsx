@@ -4,12 +4,12 @@ import React from "react";
 import { WagmiConfig, createConfig } from "wagmi";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ConnectKitProvider, getDefaultConfig } from "connectkit";
-import { scrollSepolia, bscTestnet } from "@/lib/customChains";
+import { scrollSepolia, bscTestnet, greenfieldTestnet } from "@/lib/customChains";
 
 const config = createConfig(
   getDefaultConfig({
     appName: "ChefConnect",
-    chains: [scrollSepolia, bscTestnet],
+    chains: [scrollSepolia, bscTestnet, greenfieldTestnet],
     walletConnectProjectId: process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID!,
   }),
 );
