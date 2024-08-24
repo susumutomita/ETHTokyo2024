@@ -36,9 +36,7 @@
 - **Direct Interaction between Chefs and Customers**: ChefConnect allows chefs to accept catering orders individually, with transactions and contracts managed through automated smart contracts.
 - **Token-Based Loyalty Program**: Users earn tokens for each transaction, which can be redeemed for discounts, access to exclusive menus, or traded on secondary markets.
 - **Decentralized Review System**: All reviews and ratings are stored on the blockchain, ensuring they are tamper-proof and trustworthy. Only verified purchasers can leave reviews.
-- **Integration with BNB Chain Ecosystem**: Leverages the fast and low-cost transactions of the BNB Chain, along with Greenfield for secure data storage, enabling seamless interaction with other decentralized applications.
 - **Regional Tokens for Local Economies**: Tokens specific to different regions can be issued, promoting local economic growth.
-- **NFT-Based Special Offers**: Chefs can offer limited-time menu items or special promotions as NFTs, which users can purchase, trade, or redeem.
 
 ## Technologies Used
 
