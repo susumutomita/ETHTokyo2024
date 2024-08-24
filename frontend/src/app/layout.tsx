@@ -4,6 +4,7 @@ import { sfPro, inter } from "./fonts";
 import Footer from "@/components/layout/footer";
 import { Suspense } from "react";
 import Nav from "@/components/layout/nav";
+import { Web3Provider } from "@/components/Web3Provider";
 
 export const metadata = {
   title: "Precedent - Building blocks for your Next.js project",
@@ -12,7 +13,7 @@ export const metadata = {
   metadataBase: new URL("https://precedent.dev"),
 };
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -21,13 +22,17 @@ export default async function RootLayout({
     <html lang="en">
       <body className={cx(sfPro.variable, inter.variable)}>
         <div className="fixed h-screen w-full bg-gradient-to-br from-indigo-50 via-white to-cyan-100" />
-        <Suspense fallback="...">
-          <Nav />
-        </Suspense>
-        <main className="flex min-h-screen w-full flex-col items-center justify-center py-32">
-          {children}
-        </main>
-        <Footer />
+        <Web3Provider>
+          {" "}
+          {/* Web3Providerでラップ */}
+          <Suspense fallback="...">
+            <Nav />
+          </Suspense>
+          <main className="flex min-h-screen w-full flex-col items-center justify-center py-32">
+            {children}
+          </main>
+          <Footer />
+        </Web3Provider>
       </body>
     </html>
   );
