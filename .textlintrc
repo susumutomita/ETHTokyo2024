@@ -17,5 +17,8 @@
     "no-dropping-the-ra": true,
     "spellcheck-tech-word": true,
     "prefer-tari-tari": true
-  }
+  },
+  "ignore": [
+    "lib/openzeppelin-contracts/**/*.md"
+  ]
 }
