@@ -106,35 +106,4 @@ const features = [
       "Built on [Next.js](https://nextjs.org/) primitives like `@next/font` and `next/image` for stellar performance.",
     demo: <WebVitals />,
   },
-  {
-    title: "One-click Deploy",
-    description:
-      "Jumpstart your next project by deploying Precedent to [Vercel](https://vercel.com/) in one click.",
-    demo: (
-      <a href={DEPLOY_URL}>
-        <Image
-          src="https://vercel.com/button"
-          alt="Deploy with Vercel"
-          width={120}
-          height={30}
-          unoptimized
-        />
-      </a>
-    ),
-  },
-  {
-    title: "Hooks, utilities, and more",
-    description:
-      "Precedent offers a collection of hooks, utilities, and `@vercel/og`",
-    demo: (
-      <div className="grid grid-flow-col grid-rows-3 gap-10 p-10">
-        <span className="font-mono font-semibold">useIntersectionObserver</span>
-        <span className="font-mono font-semibold">useLocalStorage</span>
-        <span className="font-mono font-semibold">useScroll</span>
-        <span className="font-mono font-semibold">nFormatter</span>
-        <span className="font-mono font-semibold">capitalize</span>
-        <span className="font-mono font-semibold">truncate</span>
-      </div>
-    ),
-  },
 ];
