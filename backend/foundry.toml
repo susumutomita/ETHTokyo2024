@@ -2,5 +2,8 @@
 src = 'src'
 out = 'out'
 libs = ['lib']
-
+gas_price = 1000000000   # ガス価格の設定は整数で指定します
 remappings = ["@openzeppelin/=lib/openzeppelin-contracts/contracts/"]
+
+[rpc_endpoints]
+sepolia = "https://scroll-sepolia.chainstacklabs.com"  # 最新ブロックでフォークするためのRPC URLを指定
