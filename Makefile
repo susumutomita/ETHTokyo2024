@@ -1,78 +1,73 @@
-.PHONY: install
-install:
+.PHONY: install setup_husky clean lint gas format format_check format_contract test_contract before_commit build_frontend start build_backend export_pdf help
+
+# Installation and Setup
+install:           # Install npm packages
 	npm install
 
-.PHONY: install_all
-install_all:
-	npm run install-all
-
-.PHONY: setup_husky
-setup_husky:
+setup_husky:      # Setup Husky for git hooks
 	npm run prepare
 
-.PHONY: clean
-clean:
+# Code Quality and Formatting
+clean:             # Clean the project
 	npm run clean
 
-.PHONY: lint
-lint:
+lint:              # Run linter
 	npm run lint
 
-.PHONY: gas
-gas:
-	npm run gas
-
-.PHONY: format
-format:
+format:            # Format code
 	npm run format
 
-.PHONY: format_check
-format_check:
+format_check:      # Check code formatting
 	npm run format:check
 
-.PHONY: format_contract
-format_contract:
+format_contract:   # Format smart contracts
 	npm run format:contract
 
-.PHONY: test_contract
-test_contract:
+# Testing
+test_contract:     # Test smart contracts
 	npm run test:contract
 
-.PHONY: before_commit
-before_commit: lint gas format_contract	format_check	test_contract
+# Gas Report
+gas:               # Run gas reporter
+	npm run gas
 
-.PHONY: start_frontend
-start_frontend:
-	cd frontend && npm run dev
+# Build and Deployment
+build_frontend:    # Build the frontend
+	cd frontend && npm run build
 
-.PHONY: start
-start:
-	npx concurrently "make start_frontend"
-
-.PHONY: build_backend
-build_backend:
+build_backend:     # Build backend contracts with Forge
 	cd backend && forge build
 
-.PHONY: export_pdf
-export_pdf:
+start:             # Start the frontend
+	npx concurrently "make start_frontend"
+
+start_frontend:    # Build the frontend
+	cd frontend && npm run dev
+
+# Export Documentation
+export_pdf:        # Export pitch deck to PDF using Marp
 	npx marp pitch_deck.md --pdf --allow-local-files --html
 
-.PHONY: help
-help:
+# Pre-commit Checks
+before_commit: lint	gas	format	format_contract	format_check	test_contract	build_frontend
+
+# Help
+help:              # Show this help message
 	@echo "Usage: make [target]"
 	@echo ""
 	@echo "Targets:"
 	@echo "  install         Install npm packages"
-	@echo "  install_all     Run npm install-all"
-	@echo "  export_pdf			Export pitch deck to PDF"
-	@echo "  setup_husky     Setup Husky"
+	@echo "  setup_husky     Setup Husky for git hooks"
 	@echo "  clean           Clean the project"
 	@echo "  lint            Run linter"
+	@echo "  format          Format code"
+	@echo "  format_check    Check code formatting"
+	@echo "  format_contract Format smart contracts"
+	@echo "  test_contract   Test smart contracts"
 	@echo "  gas             Run gas reporter"
-	@echo "  format_contract Format contract"
-	@echo "  test_contract   Test contract"
-	@echo "  before_commit   Run checks before commit"
-	@echo "  start_frontend  Start frontend"
-	@echo "  start           Start frontend"
+	@echo "  build_frontend  Build the frontend"
 	@echo "  build_backend   Build backend contracts with Forge"
+	@echo "  start           Start the frontend"
+	@echo "  export_pdf      Export pitch deck to PDF using Marp"
+	@echo "  before_commit   Run checks before commit"
 	@echo "  help            Show this help message"

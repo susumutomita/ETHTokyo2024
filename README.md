@@ -5,13 +5,13 @@
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/susumutomita/ETHTokyo2024)
 ![GitHub repo size](https://img.shields.io/github/repo-size/susumutomita/ETHTokyo2024)
 
-## ETHNarrative
+## ETHToGo
 
-**ETHNarrative** is a next-generation Web3-based decentralized content platform designed to empower content creators and users. It leverages the Ethereum blockchain to allow creators to publish, sell, and categorize paid articles using NFTs and decentralized storage. This platform provides users with a seamless experience to purchase and manage content with full ownership, promoting secure and efficient content management.
+**ETHToGo** is a decentralized, Web3-based platform designed to revolutionize the takeout and delivery industry. ETHToGo enables users to directly order takeout from local restaurants, with all transactions, payments, and reviews handled transparently through smart contracts. This platform aims to provide a more efficient, secure, and community-driven experience for both customers and restaurant owners.
 
 ## Table of Contents
 
-- [ETHNarrative](#ethnarrative)
+- [ETHToGo](#ethtogo)
 - [Table of Contents](#table-of-contents)
 - [Features](#features)
 - [Technologies Used](#technologies-used)
@@ -26,29 +26,29 @@
 
 ## Features
 
-- **Content Creation and Sales**: Authors can publish paid articles, organized by categories such as Technology, Art, and Lifestyle. Users purchase articles using cryptocurrencies (e.g., USDC, ETH) and receive ownership in the form of NFTs.
-- **Category-Based Organization**: Content is easily navigable with categories, allowing users to find relevant articles quickly.
-- **Community Governance and DAO Participation**: Users can participate in platform governance, content rating, and category management through a decentralized autonomous organization (DAO), ensuring transparent and democratic management.
-- **Smart Contract Automation**: Handles article sales, revenue distribution, and subscription management, ensuring transparency and efficiency.
-- **NFT Ownership Proof**: Articles purchased are represented as NFTs, allowing for secondary market trading and ownership transfer.
-- **Token Incentive System**: Users are rewarded with tokens for contributing to content rating and categorization, promoting active participation in content management.
+- **Peer-to-Peer Takeout Orders**: ETHToGo allows users to place orders directly with local restaurants using smart contracts, eliminating the need for centralized intermediaries.
+- **Token-Based Loyalty Program**: Users earn tokens for each order, which can be used for discounts, access to exclusive menu items, or traded in secondary markets.
+- **Decentralized Review System**: Reviews and ratings are stored on the blockchain, ensuring they are tamper-proof and trustworthy. Only verified users who have made purchases can leave reviews.
+- **Integration with BNB Chain Ecosystem**: Leverages BNB Chain's fast, low-cost transactions and Greenfield for secure data storage, providing seamless interaction with other decentralized applications.
+- **Regional Tokens for Local Economies**: Specific tokens can be issued for different regions, promoting local economic growth and strengthening community ties.
+- **NFT-Based Special Offers**: Restaurants can offer limited edition menu items or special promotions as NFTs, which users can purchase, trade, or redeem.
 
 ## Technologies Used
 
-- **Smart Contracts**: Implemented using Solidity to handle content sales, NFT issuance, and governance.
-- **Decentralized Storage**: Uses IPFS and Arweave for hosting content to ensure censorship resistance and data permanence.
-- **Web3 Wallet Integration**: MetaMask and WalletConnect integration for secure payments and NFT management.
-- **Oracle Services**: API3 or Chainlink used for reliable data feeds into smart contracts, enhancing transparency and accuracy in pricing and reward systems.
-- **Frontend Development**: Built using React/Next.js for an intuitive and responsive user interface.
-- **Backend and Database**: Node.js with Express for server-side logic, MongoDB for decentralized data storage.
+- **Blockchain**: BNB Chain for handling transactions and smart contract execution.
+- **Smart Contracts**: Developed in Solidity to manage orders, payments, loyalty rewards, and governance.
+- **Decentralized Storage**: Utilizes BNB Greenfield and IPFS for secure, permanent storage of menu data and order history.
+- **Web3 Wallet Integration**: MetaMask and WalletConnect support for secure payment processing and NFT management.
+- **Frontend Development**: Built with React.js for an interactive and user-friendly interface.
+- **Backend and Database**: Node.js with Express for server-side logic, MongoDB for managing decentralized data.
 
 ## System Overview
 
-ETHNarrative integrates multiple Web3 technologies to provide a seamless experience for both content creators and consumers. Key components include smart contracts for handling transactions and ownership, decentralized storage solutions for article hosting, and a DAO framework for community governance. The use of NFTs ensures proof of ownership and enables trading in secondary markets.
+ETHToGo integrates several Web3 technologies to create a decentralized ecosystem for food ordering. Key components include BNB Chain-based smart contracts for secure transactions, decentralized storage solutions for data integrity, and tokenomics to incentivize user engagement and loyalty. The use of NFTs enables unique customer experiences, such as special menu items and exclusive offers.
 
 ## Screenshots
 
-*Include screenshots here showcasing the user interface, the content management system, the purchasing process, etc.*
+*Include screenshots here showcasing the user interface, order process, NFT offers, etc.*
 
 ## Installation
 
@@ -72,26 +72,27 @@ To set up the development environment locally:
     make dev
     ```
 
-Ensure you have a Web3 wallet like MetaMask installed and configured to interact with the test network.
+Ensure you have a Web3 wallet like MetaMask installed and configured to interact with the BNB Chain test network.
 
 ## Usage
 
 1. Connect your Web3 wallet (MetaMask or WalletConnect).
-2. Browse articles by category or search for specific content.
-3. Purchase articles using cryptocurrency; your ownership is recorded as an NFT.
-4. Participate in community governance by rating content and managing categories.
-5. View and trade your purchased content in your NFT wallet.
+2. Browse participating local restaurants and their menus.
+3. Place takeout orders using cryptocurrency, with all transactions handled via smart contracts.
+4. Earn tokens with each order and redeem them for discounts or special offers.
+5. Participate in community governance by leaving reviews and helping manage platform categories.
+6. View and trade NFTs representing special offers or menu items in your wallet.
 
 ## Future Prospects
 
-- **Expansion of Categories**: Adding more diverse categories to accommodate a broader range of content.
-- **Mobile App Development**: Building native iOS and Android apps to improve accessibility.
-- **Enhanced Community Features**: Developing more robust DAO functionalities for community engagement.
-- **Integration with Other Web3 Platforms**: Expanding interoperability with other decentralized applications and platforms.
+- **Mobile Application Development**: Creating native iOS and Android apps to enhance accessibility and user experience.
+- **Expansion of Regional Tokens**: Introducing more regional tokens to support local economies across various cities and regions.
+- **Enhanced DAO Features**: Developing more robust governance tools for greater community involvement.
+- **Integration with Other Web3 Services**: Linking ETHToGo with other decentralized platforms to expand functionality and interoperability.
 
 ## Contributing
 
-We welcome contributions from the community To contribute:
+We welcome contributions from the community. To contribute:
 
 1. Fork the repository.
 2. Create a new branch: `git checkout -b feature-name`
