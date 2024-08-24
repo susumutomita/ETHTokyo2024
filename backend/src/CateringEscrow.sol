@@ -86,9 +86,14 @@ contract CateringEscrow is Ownable {
         emit ChefProfileSubmitted(msg.sender, _name, _description, _specialty);
     }
 
+    mapping(address => mapping(address => bool)) public hasVoted;
+
     function vote(address _chef) external {
         require(bytes(chefProfiles[_chef].name).length > 0, "Chef does not exist");
+        require(!hasVoted[msg.sender][_chef], "You have already voted for this chef");
+
         chefProfiles[_chef].voteCount += 1;
+        hasVoted[msg.sender][_chef] = true;
         emit Voted(_chef, chefProfiles[_chef].voteCount);
     }
 
