@@ -7,7 +7,7 @@
 
 ## ETHToGo
 
-**ETHToGo** is a decentralized, Web3-based platform designed to revolutionize the takeout and delivery industry by leveraging blockchain technology. Built on the BNB Chain, ETHToGo enables users to directly order takeout from local restaurants, with all transactions, payments, and reviews handled transparently through smart contracts. This platform aims to provide a more efficient, secure, and community-driven experience for both customers and restaurant owners.
+**ETHToGo** is a decentralized, Web3-based platform designed to revolutionize the takeout and delivery industry. ETHToGo enables users to directly order takeout from local restaurants, with all transactions, payments, and reviews handled transparently through smart contracts. This platform aims to provide a more efficient, secure, and community-driven experience for both customers and restaurant owners.
 
 ## Table of Contents
 
