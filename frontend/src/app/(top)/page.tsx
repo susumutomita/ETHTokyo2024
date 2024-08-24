@@ -1,28 +1,14 @@
+"use client";
+
 import Card from "@/components/home/card";
 import { DEPLOY_URL } from "@/lib/constants";
 import { Github, Twitter } from "@/components/shared/icons";
 import WebVitals from "@/components/home/web-vitals";
 import ComponentGrid from "@/components/home/component-grid";
 import Image from "next/image";
-import { nFormatter } from "@/lib/utils";
+import { ConnectKitButton } from "connectkit";
 
-export default async function Home() {
-  const { stargazers_count: stars } = await fetch(
-    "https://api.github.com/repos/steven-tey/precedent",
-    {
-      ...(process.env.GITHUB_OAUTH_TOKEN && {
-        headers: {
-          Authorization: `Bearer ${process.env.GITHUB_OAUTH_TOKEN}`,
-          "Content-Type": "application/json",
-        },
-      }),
-      // data will revalidate every 24 hours
-      next: { revalidate: 86400 },
-    },
-  )
-    .then((res) => res.json())
-    .catch((e) => console.log(e));
-
+export default function Home() {
   return (
     <>
       <div className="z-10 w-full max-w-xl px-5 xl:px-0">
@@ -50,6 +36,8 @@ export default async function Home() {
           An opinionated collection of components, hooks, and utilities for your
           Next.js project.
         </p>
+        <ConnectKitButton />
+
         <div
           className="mx-auto mt-6 flex animate-fade-up items-center justify-center space-x-5 opacity-0"
           style={{ animationDelay: "0.3s", animationFillMode: "forwards" }}
@@ -83,10 +71,7 @@ export default async function Home() {
             rel="noopener noreferrer"
           >
             <Github />
-            <p>
-              <span className="hidden sm:inline-block">Star on</span> GitHub{" "}
-              <span className="font-semibold">{nFormatter(stars)}</span>
-            </p>
+            <p>Star on GitHub</p>
           </a>
         </div>
       </div>
