@@ -5,6 +5,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract CateringEscrow is Ownable {
     uint256 private serviceIdCounter;
+    uint256 private chefIdCounter;
 
     enum ServiceStatus {
         Created,
@@ -21,13 +22,24 @@ contract CateringEscrow is Ownable {
         ServiceStatus status;
     }
 
+    struct ChefProfile {
+        string name;
+        string description;
+        string specialty;
+        uint256 voteCount;
+    }
+
     mapping(uint256 => Service) public services;
+    mapping(address => ChefProfile) public chefProfiles; // シェフのプロフィールを保存
+    address[] public chefAddresses; // 登録されたシェフのアドレスを追跡
 
     event ServiceCreated(uint256 indexed serviceId, address indexed provider, address indexed customer, uint256 amount);
     event ServiceStarted(uint256 indexed serviceId);
     event ServiceCompleted(uint256 indexed serviceId);
     event ServiceCancelled(uint256 indexed serviceId);
     event PaymentReleased(uint256 indexed serviceId, address indexed provider, uint256 amount);
+    event ChefProfileSubmitted(address indexed chef, string name, string description, string specialty);
+    event Voted(address indexed chef, uint256 voteCount);
 
     modifier onlyCustomer(uint256 serviceId) {
         require(msg.sender == services[serviceId].customer, "Only customer can call this function");
@@ -41,6 +53,7 @@ contract CateringEscrow is Ownable {
 
     constructor() Ownable(msg.sender) {
         serviceIdCounter = 0;
+        chefIdCounter = 0;
     }
 
     function createService(address payable _provider) external payable {
@@ -58,6 +71,44 @@ contract CateringEscrow is Ownable {
         });
 
         emit ServiceCreated(newServiceId, _provider, msg.sender, msg.value);
+    }
+
+    function submitChefProfile(string memory _name, string memory _description, string memory _specialty) external {
+        uint256 nameLength = bytes(_name).length;
+        uint256 descriptionLength = bytes(_description).length;
+        uint256 specialtyLength = bytes(_specialty).length;
+        require(nameLength > 0, "Name is required");
+        require(descriptionLength > 0, "Description is required");
+        require(specialtyLength > 0, "Specialty is required");
+
+        if (bytes(chefProfiles[msg.sender].name).length == 0) {
+            chefAddresses.push(msg.sender); // 新しいシェフの場合、アドレスを追加
+        }
+
+        chefProfiles[msg.sender] = ChefProfile(_name, _description, _specialty, 0);
+        emit ChefProfileSubmitted(msg.sender, _name, _description, _specialty);
+    }
+
+    mapping(address => mapping(address => bool)) public hasVoted;
+
+    function vote(address _chef) external {
+        require(bytes(chefProfiles[_chef].name).length > 0, "Chef does not exist");
+        require(!hasVoted[msg.sender][_chef], "You have already voted for this chef");
+
+        chefProfiles[_chef].voteCount += 1;
+        hasVoted[msg.sender][_chef] = true;
+        emit Voted(_chef, chefProfiles[_chef].voteCount);
+    }
+
+    function getChefProfiles() external view returns (address[] memory, ChefProfile[] memory) {
+        uint256 chefCount = chefAddresses.length;
+        ChefProfile[] memory profiles = new ChefProfile[](chefCount);
+
+        for (uint256 i = 0; i < chefCount; i++) {
+            profiles[i] = chefProfiles[chefAddresses[i]];
+        }
+
+        return (chefAddresses, profiles);
     }
 
     function startService(uint256 serviceId) external onlyCustomer(serviceId) {
