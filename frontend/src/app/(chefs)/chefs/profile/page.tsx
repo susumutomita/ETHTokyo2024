@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { BrowserProvider, Contract } from "ethers";
-import { abi, contractAddress } from "../../../constants/contract"; // スマートコントラクトのABIとアドレス
+import { abi, contractAddresses } from "../../../constants/contract"; // スマートコントラクトのABIとアドレスをネットワークごとに設定
 import ChefProfileForm from "../../../../components/ChefProfileForm"; // 既存のフォームを使用
 
 type ProfileData = {
@@ -13,12 +13,8 @@ type ProfileData = {
 
 export default function ChefProfilePage() {
   const [submitting, setSubmitting] = useState(false);
-  const [initialData, setInitialData] = useState<ProfileData>({
-    name: "",
-    description: "",
-    specialty: "",
-  });
   const [error, setError] = useState<string | null>(null);
+  const [contractAddress, setContractAddress] = useState<string>("");
 
   const handleSubmit = async (profileData: ProfileData) => {
     console.log("Submitting profile data:", profileData);
@@ -36,7 +32,25 @@ export default function ChefProfilePage() {
 
       const provider = new BrowserProvider(window.ethereum);
       const signer = await provider.getSigner();
-      const contract = new Contract(contractAddress, abi, signer);
+      const network = await provider.getNetwork();
+
+      // ネットワークIDに基づいてコントラクトアドレスを選択
+      let selectedAddress = "";
+      switch (BigInt(network.chainId)) {
+        case BigInt(534351): // Scroll Testnet ID
+          selectedAddress = contractAddresses.scrollTestnet;
+          break;
+        case BigInt(97): // BNB Testnet ID
+          selectedAddress = contractAddresses.bnbTestnet;
+          break;
+        default:
+          setError("Unsupported network");
+          setSubmitting(false);
+          return;
+      }
+
+      setContractAddress(selectedAddress);
+      const contract = new Contract(selectedAddress, abi, signer);
 
       // コントラクトにデータを送信
       const tx = await contract.submitChefProfile(

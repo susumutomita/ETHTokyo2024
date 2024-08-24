@@ -5,13 +5,15 @@
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/susumutomita/ETHTokyo2024)
 ![GitHub repo size](https://img.shields.io/github/repo-size/susumutomita/ETHTokyo2024)
 
-## ChefConnect
+<div style="text-align: center;">
+  <img src="./images/logo.png" width="200" height="200" alt="ChefConnect Logo"/>
+</div>
+
 
 **ChefConnect** is a decentralized Web3 platform that allows chefs to offer catering services on an individual basis. ChefConnect manages transactions, payments, reviews, and other operations using a transparent blockchain-based system.
 
 ## Table of Contents
 
-- [ChefConnect](#chefconnect)
 - [Table of Contents](#table-of-contents)
 - [Features](#features)
 - [Technologies Used](#technologies-used)
@@ -53,7 +55,9 @@ ChefConnect combines various Web3 technologies to build a decentralized ecosyste
 
 ## Screenshots
 
-*Include screenshots here showcasing the user interface, order process, NFT offers, etc.*
+<img src=./images/welcome.png>
+<img src=./images/profile.png>
+<img src=./images/vote.png>
 
 ## Installation
 
@@ -109,11 +113,21 @@ After deploying to the Scroll Testnet, you can verify the contract using ScrollS
 
 ### Deployed Contract Information
 
+**Scroll Testnet**
+
 - **Contract Address**: `0x324cf87A3A2B92FADBCDe6798c1a7ac9949c973b`
 - **ScrollScan Link**: [View Contract on ScrollScan](https://sepolia.scrollscan.com/address/0x324cf87A3A2B92FADBCDe6798c1a7ac9949c973b)
 - **Transaction Hash**: `0xfb74f2fd2d570b7e2e0ec3b274886908a171b3a08f077b560372d4353f099f25`
 
 ![ScrollScan Screenshot](images/Scrollprize.png)
+
+**BNB Testnet**
+
+- **Contract Address**: `0x74Ba9DC4ad8a89a9dcbB51D8a91E787096ED3E6F`
+- **BscScan Link**: [View Contract on BscScan](https://testnet.bscscan.com/address/0x74Ba9DC4ad8a89a9dcbB51D8a91E787096ED3E6F)
+- **Transaction Hash**: `0x4cd249e17aea14740d1b8b0796fe7e272683327a3180badd93a8ec3e899fe93e`
+
+![BscScan Screenshot](images/BSCprize.png)
 
 ### Deploying to BNB Testnet
 
