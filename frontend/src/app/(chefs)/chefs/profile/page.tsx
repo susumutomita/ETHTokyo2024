@@ -56,7 +56,7 @@ export default function ChefProfilePage() {
       const tx = await contract.submitChefProfile(
         profileData.name,
         profileData.description,
-        profileData.specialty
+        profileData.specialty,
       );
 
       await tx.wait(); // トランザクションが完了するのを待つ
