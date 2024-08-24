@@ -7,7 +7,7 @@
 
 ## ChefConnect
 
-**ChefConnect** is a decentralized Web3 platform that enables chefs to offer catering services individually.ChefConnect handles transactions, payments, reviews, and more through transparent.
+**ChefConnect** is a decentralized Web3 platform that allows chefs to offer catering services on an individual basis. ChefConnect manages transactions, payments, reviews, and other operations using a transparent blockchain-based system.
 
 ## Table of Contents
 
@@ -19,6 +19,11 @@
 - [Screenshots](#screenshots)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Deployment](#deployment)
+  - [Deploying to Scroll Testnet](#deploying-to-scroll-testnet)
+  - [Verifying Deployed Contracts on Scroll Testnet](#verifying-deployed-contracts-on-scroll-testnet)
+  - [Deployed Contract Information](#deployed-contract-information)
+  - [Deploying to BNB Testnet](#deploying-to-bnb-testnet)
 - [Future Prospects](#future-prospects)
 - [Contributing](#contributing)
 - [License](#license)
@@ -82,6 +87,43 @@ Make sure you have a Web3 wallet like MetaMask installed and configured to inter
 4. Earn tokens with each order and use them for discounts or special offers.
 5. Participate in community governance by leaving reviews and helping manage platform categories.
 6. View and trade NFTs representing special offers or menu items in your wallet.
+
+## Deployment
+
+### Deploying to Scroll Testnet
+
+To deploy the CateringEscrow contract to the Scroll Testnet, use the following command:
+
+```bash
+make deploy-scroll
+```
+
+This command uses the `SCROLL_RPC_URL`, `SCROLL_SENDER_ADDRESS`, and `SCROLL_PRIVATE_KEY` environment variables specified in your `.env` file.
+
+### Verifying Deployed Contracts on Scroll Testnet
+
+After deploying to the Scroll Testnet, you can verify the contract using ScrollScan:
+
+1. Visit the [ScrollScan](https://sepolia.scroll.io) for the Scroll Testnet.
+2. Enter your deployed contract address to view transaction details and logs.
+
+### Deployed Contract Information
+
+- **Contract Address**: `0x624669da92762546073a8B00579835216F5FD4B4`
+- **ScrollScan Link**: [View Contract on ScrollScan](https://sepolia.scrollscan.com/address/0x624669da92762546073a8B00579835216F5FD4B4)
+- **Transaction Hash**: `0x371b9e7de8bf720b8563a991cb0fffbbf2f9b9d36260037c2815134ad37c2afa`
+
+![ScrollScan Screenshot](images/Scrollprize.png)
+
+### Deploying to BNB Testnet
+
+To deploy the CateringEscrow contract to the BNB Testnet, use the following command:
+
+```bash
+make deploy-bnb
+```
+
+Ensure that you have set the correct RPC URL and private key in your `.env` file.
 
 ## Future Prospects
 
