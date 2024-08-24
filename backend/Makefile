@@ -38,4 +38,4 @@ deploy:
 	forge script script/CateringEscrow.s.sol:CateringEscrowScript --rpc-url $(RPC_URL) --broadcast --sender $(SENDER_ADDRESS) --private-key $(PRIVATE_KEY)
 
 # Deploy to all supported testnets
-deploy-all: deploy-scroll deploy-nero deploy-linea deploy-metal2 deploy-base	deploy-bmb
+deploy-all: deploy-scroll deploy-nero deploy-linea 	deploy-bmb
