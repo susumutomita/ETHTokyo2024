@@ -98,8 +98,9 @@ For contracts deployed on the BNB Testnet, you can use the BscScan block explore
 
 For contracts deployed on the Scroll Sepolia Testnet:
 
-1. Use the designated Scroll block explorer (if available) for Sepolia.
-2. Enter your deployed contract address to view transaction details and logs.
+1. Visit [Scroll Sepolia](https://sepolia.scrollscan.com).
+2. Enter your deployed contract address (e.g., `0x624669da92762546073a8B00579835216F5FD4B4`) in the search bar.
+3. You will be able to see transaction details, contract code (if verified), events, and other information.
 
 ### 3. Linea Testnet
 
