@@ -1,17 +1,9 @@
 import "./globals.css";
 import cx from "classnames";
 import { sfPro, inter } from "./fonts";
-import Footer from "@/components/layout/footer";
 import { Suspense } from "react";
-import Nav from "@/components/layout/nav";
+import Navbar from "@/components/layout/navbar";
 import { Web3Provider } from "@/components/Web3Provider";
-
-export const metadata = {
-  title: "Precedent - Building blocks for your Next.js project",
-  description:
-    "Precedent is the all-in-one solution for your Next.js project. It includes a design system, authentication, analytics, and more.",
-  metadataBase: new URL("https://precedent.dev"),
-};
 
 export default function RootLayout({
   children,
@@ -26,12 +18,11 @@ export default function RootLayout({
           {" "}
           {/* Web3Providerでラップ */}
           <Suspense fallback="...">
-            <Nav />
+            <Navbar />
           </Suspense>
           <main className="flex min-h-screen w-full flex-col items-center justify-center py-32">
             {children}
           </main>
-          <Footer />
         </Web3Provider>
       </body>
     </html>
