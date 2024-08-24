@@ -21,8 +21,18 @@ export const abi = [
     inputs: [
       { indexed: true, internalType: "address", name: "chef", type: "address" },
       { indexed: false, internalType: "string", name: "name", type: "string" },
-      { indexed: false, internalType: "string", name: "description", type: "string" },
-      { indexed: false, internalType: "string", name: "specialty", type: "string" },
+      {
+        indexed: false,
+        internalType: "string",
+        name: "description",
+        type: "string",
+      },
+      {
+        indexed: false,
+        internalType: "string",
+        name: "specialty",
+        type: "string",
+      },
     ],
     name: "ChefProfileSubmitted",
     type: "event",
@@ -30,8 +40,18 @@ export const abi = [
   {
     anonymous: false,
     inputs: [
-      { indexed: true, internalType: "address", name: "previousOwner", type: "address" },
-      { indexed: true, internalType: "address", name: "newOwner", type: "address" },
+      {
+        indexed: true,
+        internalType: "address",
+        name: "previousOwner",
+        type: "address",
+      },
+      {
+        indexed: true,
+        internalType: "address",
+        name: "newOwner",
+        type: "address",
+      },
     ],
     name: "OwnershipTransferred",
     type: "event",
@@ -39,39 +59,95 @@ export const abi = [
   {
     anonymous: false,
     inputs: [
-      { indexed: true, internalType: "uint256", name: "serviceId", type: "uint256" },
-      { indexed: true, internalType: "address", name: "provider", type: "address" },
-      { indexed: false, internalType: "uint256", name: "amount", type: "uint256" },
+      {
+        indexed: true,
+        internalType: "uint256",
+        name: "serviceId",
+        type: "uint256",
+      },
+      {
+        indexed: true,
+        internalType: "address",
+        name: "provider",
+        type: "address",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "amount",
+        type: "uint256",
+      },
     ],
     name: "PaymentReleased",
     type: "event",
   },
   {
     anonymous: false,
-    inputs: [{ indexed: true, internalType: "uint256", name: "serviceId", type: "uint256" }],
+    inputs: [
+      {
+        indexed: true,
+        internalType: "uint256",
+        name: "serviceId",
+        type: "uint256",
+      },
+    ],
     name: "ServiceCancelled",
     type: "event",
   },
   {
     anonymous: false,
-    inputs: [{ indexed: true, internalType: "uint256", name: "serviceId", type: "uint256" }],
+    inputs: [
+      {
+        indexed: true,
+        internalType: "uint256",
+        name: "serviceId",
+        type: "uint256",
+      },
+    ],
     name: "ServiceCompleted",
     type: "event",
   },
   {
     anonymous: false,
     inputs: [
-      { indexed: true, internalType: "uint256", name: "serviceId", type: "uint256" },
-      { indexed: true, internalType: "address", name: "provider", type: "address" },
-      { indexed: true, internalType: "address", name: "customer", type: "address" },
-      { indexed: false, internalType: "uint256", name: "amount", type: "uint256" },
+      {
+        indexed: true,
+        internalType: "uint256",
+        name: "serviceId",
+        type: "uint256",
+      },
+      {
+        indexed: true,
+        internalType: "address",
+        name: "provider",
+        type: "address",
+      },
+      {
+        indexed: true,
+        internalType: "address",
+        name: "customer",
+        type: "address",
+      },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "amount",
+        type: "uint256",
+      },
     ],
     name: "ServiceCreated",
     type: "event",
   },
   {
     anonymous: false,
-    inputs: [{ indexed: true, internalType: "uint256", name: "serviceId", type: "uint256" }],
+    inputs: [
+      {
+        indexed: true,
+        internalType: "uint256",
+        name: "serviceId",
+        type: "uint256",
+      },
+    ],
     name: "ServiceStarted",
     type: "event",
   },
@@ -79,7 +155,12 @@ export const abi = [
     anonymous: false,
     inputs: [
       { indexed: true, internalType: "address", name: "chef", type: "address" },
-      { indexed: false, internalType: "uint256", name: "voteCount", type: "uint256" },
+      {
+        indexed: false,
+        internalType: "uint256",
+        name: "voteCount",
+        type: "uint256",
+      },
     ],
     name: "Voted",
     type: "event",
@@ -118,7 +199,9 @@ export const abi = [
     type: "function",
   },
   {
-    inputs: [{ internalType: "address payable", name: "_provider", type: "address" }],
+    inputs: [
+      { internalType: "address payable", name: "_provider", type: "address" },
+    ],
     name: "createService",
     outputs: [],
     stateMutability: "payable",
@@ -183,7 +266,11 @@ export const abi = [
       { internalType: "address payable", name: "provider", type: "address" },
       { internalType: "address payable", name: "customer", type: "address" },
       { internalType: "uint256", name: "amount", type: "uint256" },
-      { internalType: "enum CateringEscrow.ServiceStatus", name: "status", type: "uint8" },
+      {
+        internalType: "enum CateringEscrow.ServiceStatus",
+        name: "status",
+        type: "uint8",
+      },
     ],
     stateMutability: "view",
     type: "function",
