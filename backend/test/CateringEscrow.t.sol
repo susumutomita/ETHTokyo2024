@@ -66,9 +66,13 @@ contract CateringEscrowTest is Test {
     function test_CancelService() public {
         uint256 amount = 1 ether;
         escrow.createService{value: amount}(provider);
+
+        vm.expectEmit(true, true, true, true);
+        emit CateringEscrow.ServiceCancelled(1);
+
         escrow.cancelService(1);
 
-        (,,,, CateringEscrow.ServiceStatus status) = escrow.services(1);
-        assertEq(uint8(status), uint8(CateringEscrow.ServiceStatus.Cancelled));
+        (uint256 id,,,,) = escrow.services(1);
+        assertEq(id, 0, "Service was not properly cancelled and deleted");
     }
 }

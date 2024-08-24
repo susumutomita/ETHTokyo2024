@@ -82,18 +82,24 @@ contract CateringEscrow is Ownable {
         require(success, "Transfer failed");
         emit PaymentReleased(serviceId, service.provider, service.amount);
 
-        delete services[serviceId]; // 支払い後にサービスを削除
+        delete services[serviceId];
     }
 
     function cancelService(uint256 serviceId) external onlyCustomer(serviceId) {
         require(services[serviceId].status == ServiceStatus.Created, "Service must be in Created status");
 
-        Service storage service = services[serviceId];
-        service.status = ServiceStatus.Cancelled; // 状態をキャンセルに変更
+        Service memory service = services[serviceId];
+        services[serviceId].status = ServiceStatus.Cancelled;
 
         (bool success,) = service.customer.call{value: service.amount}("");
-        require(success, "Refund failed"); // 返金失敗時の処理
+        require(success, "Refund failed");
 
         emit ServiceCancelled(serviceId);
+
+        delete services[serviceId];
+    }
+
+    receive() external payable {
+        revert("Direct transfers not allowed");
     }
 }
