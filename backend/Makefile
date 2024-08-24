@@ -29,9 +29,13 @@ deploy-metal2:
 deploy-base:
 	forge script script/CateringEscrow.s.sol:CateringEscrowScript --rpc-url $(BASE_TEST_RPC_URL) --broadcast --sender $(BASE_SENDER_ADDRESS) --private-key $(BASE_PRIVATE_KEY)
 
+# Deploy to BNB Testnet
+deploy-bmb:
+	forge script script/CateringEscrow.s.sol:CateringEscrowScript --rpc-url $(BNB_TEST_RPC_URL) --broadcast --sender $(BNB_SENDER_ADDRESS) --private-key $(BNB_PRIVATE_KEY)
+
 # Custom deployment using environment variables specified at runtime
 deploy:
 	forge script script/CateringEscrow.s.sol:CateringEscrowScript --rpc-url $(RPC_URL) --broadcast --sender $(SENDER_ADDRESS) --private-key $(PRIVATE_KEY)
 
 # Deploy to all supported testnets
-deploy-all: deploy-scroll deploy-nero deploy-linea deploy-metal2 deploy-base
+deploy-all: deploy-scroll deploy-nero deploy-linea deploy-metal2 deploy-base	deploy-bmb
