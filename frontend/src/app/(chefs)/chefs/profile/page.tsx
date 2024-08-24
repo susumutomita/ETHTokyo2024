@@ -118,6 +118,8 @@ export default function ChefProfilePage() {
       alert("An error occurred while updating the profile. Please try again.");
     }
   };
+  alert("Failed to update profile. Please try again later.");
+  console.error("Failed to update profile:", error);
 
   if (loading) {
     return <div>Loading...</div>; // Show loading message while fetching data
