@@ -15,7 +15,7 @@ type ProfileData = {
   specialty: string;
 };
 
-export const dynamic = 'force-dynamic'; // 動的にクライアントサイドで実行
+export const dynamic = "force-dynamic"; // 動的にクライアントサイドで実行
 
 export default function ChefProfilePage() {
   const { address, connector } = useAccount();

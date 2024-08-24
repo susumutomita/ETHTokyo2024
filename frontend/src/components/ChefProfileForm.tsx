@@ -70,7 +70,9 @@ const ChefProfileForm: React.FC<Props> = ({ onSubmit, initialData }) => {
           </button>
           <button
             type="button"
-            onClick={() => { window.location.href = "/" }}
+            onClick={() => {
+              window.location.href = "/";
+            }}
             className="bg-gray-500 text-white px-4 py-2 rounded-md"
           >
             Back to Home
