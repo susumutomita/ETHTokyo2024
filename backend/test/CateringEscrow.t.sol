@@ -100,6 +100,7 @@ contract CateringEscrowTest is Test {
     }
 
     function test_GetChefProfiles() public {
+        // Submit a chef profile and verify the profile retrieval
         escrow.submitChefProfile("Chef A", "Expert in Italian Cuisine", "Pasta");
 
         (address[] memory addresses, CateringEscrow.ChefProfile[] memory profiles) = escrow.getChefProfiles();
