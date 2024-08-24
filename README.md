@@ -44,7 +44,6 @@
 
 - **Blockchain**: Utilizes BNB Chain for transaction processing and smart contract execution.
 - **Smart Contracts**: Developed using Solidity to manage orders, payments, loyalty rewards, and governance.
-- **Decentralized Storage**: Uses BNB Greenfield and IPFS for secure, permanent storage of menu data and order history.
 - **Web3 Wallet Integration**: Supports MetaMask and WalletConnect for secure payment processing and NFT management.
 - **Frontend Development**: Built using Next.js for an interactive and user-friendly interface.
 - **Backend and On-Chain App**: Backend logic is processed through smart contracts, functioning as an on-chain application.
@@ -87,10 +86,8 @@ Make sure you have a Web3 wallet like MetaMask installed and configured to inter
 
 1. Connect your Web3 wallet (MetaMask or WalletConnect).
 2. Browse menus from participating chefs and catering services.
-3. Place orders using cryptocurrency, with all transactions handled via smart contracts.
-4. Earn tokens with each order and use them for discounts or special offers.
-5. Participate in community governance by leaving reviews and helping manage platform categories.
-6. View and trade NFTs representing special offers or menu items in your wallet.
+3. Earn tokens with each order and use them for discounts or special offers.
+4. Vote
 
 ## Deployment
 
@@ -141,10 +138,8 @@ Ensure that you have set the correct RPC URL and private key in your `.env` file
 
 ## Future Prospects
 
-- **Mobile Application Development**: Develop native iOS and Android apps to enhance accessibility and user experience.
-- **Expansion of Regional Tokens**: Introduce more regional tokens to support local economies in various cities and regions.
-- **Enhanced DAO Features**: Develop more robust governance tools for greater community involvement.
-- **Integration with Other Web3 Services**: Link ChefConnect with other decentralized platforms to expand functionality and interoperability.
+- **Full Catering Workflow**: Book, serve, and get paid.
+- **Enhanced Governance**: Community-driven decisions.
 
 ## Contributing
 
