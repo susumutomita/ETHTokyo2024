@@ -5,13 +5,13 @@
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/susumutomita/ETHTokyo2024)
 ![GitHub repo size](https://img.shields.io/github/repo-size/susumutomita/ETHTokyo2024)
 
-## ETHToGo
+## ChefConnect
 
-**ETHToGo** is a decentralized, Web3-based platform designed to revolutionize the takeout and delivery industry. ETHToGo enables users to directly order takeout from local restaurants, with all transactions, payments, and reviews handled transparently through smart contracts. This platform aims to provide a more efficient, secure, and community-driven experience for both customers and restaurant owners.
+**ChefConnect** is a decentralized Web3 platform that enables chefs to offer catering services individually.ChefConnect handles transactions, payments, reviews, and more through transparent.
 
 ## Table of Contents
 
-- [ETHToGo](#ethtogo)
+- [ChefConnect](#chefconnect)
 - [Table of Contents](#table-of-contents)
 - [Features](#features)
 - [Technologies Used](#technologies-used)
@@ -26,25 +26,25 @@
 
 ## Features
 
-- **Peer-to-Peer Takeout Orders**: ETHToGo allows users to place orders directly with local restaurants using smart contracts, eliminating the need for centralized intermediaries.
-- **Token-Based Loyalty Program**: Users earn tokens for each order, which can be used for discounts, access to exclusive menu items, or traded in secondary markets.
-- **Decentralized Review System**: Reviews and ratings are stored on the blockchain, ensuring they are tamper-proof and trustworthy. Only verified users who have made purchases can leave reviews.
-- **Integration with BNB Chain Ecosystem**: Leverages BNB Chain's fast, low-cost transactions and Greenfield for secure data storage, providing seamless interaction with other decentralized applications.
-- **Regional Tokens for Local Economies**: Specific tokens can be issued for different regions, promoting local economic growth and strengthening community ties.
-- **NFT-Based Special Offers**: Restaurants can offer limited edition menu items or special promotions as NFTs, which users can purchase, trade, or redeem.
+- **Direct Interaction between Chefs and Customers**: ChefConnect allows chefs to accept catering orders individually, with transactions and contracts managed through automated smart contracts.
+- **Token-Based Loyalty Program**: Users earn tokens for each transaction, which can be redeemed for discounts, access to exclusive menus, or traded on secondary markets.
+- **Decentralized Review System**: All reviews and ratings are stored on the blockchain, ensuring they are tamper-proof and trustworthy. Only verified purchasers can leave reviews.
+- **Integration with BNB Chain Ecosystem**: Leverages the fast and low-cost transactions of the BNB Chain, along with Greenfield for secure data storage, enabling seamless interaction with other decentralized applications.
+- **Regional Tokens for Local Economies**: Tokens specific to different regions can be issued, promoting local economic growth.
+- **NFT-Based Special Offers**: Chefs can offer limited-time menu items or special promotions as NFTs, which users can purchase, trade, or redeem.
 
 ## Technologies Used
 
-- **Blockchain**: BNB Chain for handling transactions and smart contract execution.
-- **Smart Contracts**: Developed in Solidity to manage orders, payments, loyalty rewards, and governance.
-- **Decentralized Storage**: Utilizes BNB Greenfield and IPFS for secure, permanent storage of menu data and order history.
-- **Web3 Wallet Integration**: MetaMask and WalletConnect support for secure payment processing and NFT management.
-- **Frontend Development**: Built with React.js for an interactive and user-friendly interface.
-- **Backend and Database**: Node.js with Express for server-side logic, MongoDB for managing decentralized data.
+- **Blockchain**: Utilizes BNB Chain for transaction processing and smart contract execution.
+- **Smart Contracts**: Developed using Solidity to manage orders, payments, loyalty rewards, and governance.
+- **Decentralized Storage**: Uses BNB Greenfield and IPFS for secure, permanent storage of menu data and order history.
+- **Web3 Wallet Integration**: Supports MetaMask and WalletConnect for secure payment processing and NFT management.
+- **Frontend Development**: Built using Next.js for an interactive and user-friendly interface.
+- **Backend and On-Chain App**: Backend logic is processed through smart contracts, functioning as an on-chain application.
 
 ## System Overview
 
-ETHToGo integrates several Web3 technologies to create a decentralized ecosystem for food ordering. Key components include BNB Chain-based smart contracts for secure transactions, decentralized storage solutions for data integrity, and tokenomics to incentivize user engagement and loyalty. The use of NFTs enables unique customer experiences, such as special menu items and exclusive offers.
+ChefConnect combines various Web3 technologies to build a decentralized ecosystem for catering orders. It uses BNB Chain-based smart contracts for secure transactions and decentralized storage solutions for data integrity. Tokenomics enhance user engagement and loyalty, while NFTs offer unique customer experiences such as special menu items and exclusive offers.
 
 ## Screenshots
 
@@ -72,23 +72,23 @@ To set up the development environment locally:
     make dev
     ```
 
-Ensure you have a Web3 wallet like MetaMask installed and configured to interact with the BNB Chain test network.
+Make sure you have a Web3 wallet like MetaMask installed and configured to interact with the BNB Chain test network.
 
 ## Usage
 
 1. Connect your Web3 wallet (MetaMask or WalletConnect).
-2. Browse participating local restaurants and their menus.
-3. Place takeout orders using cryptocurrency, with all transactions handled via smart contracts.
-4. Earn tokens with each order and redeem them for discounts or special offers.
+2. Browse menus from participating chefs and catering services.
+3. Place orders using cryptocurrency, with all transactions handled via smart contracts.
+4. Earn tokens with each order and use them for discounts or special offers.
 5. Participate in community governance by leaving reviews and helping manage platform categories.
 6. View and trade NFTs representing special offers or menu items in your wallet.
 
 ## Future Prospects
 
-- **Mobile Application Development**: Creating native iOS and Android apps to enhance accessibility and user experience.
-- **Expansion of Regional Tokens**: Introducing more regional tokens to support local economies across various cities and regions.
-- **Enhanced DAO Features**: Developing more robust governance tools for greater community involvement.
-- **Integration with Other Web3 Services**: Linking ETHToGo with other decentralized platforms to expand functionality and interoperability.
+- **Mobile Application Development**: Develop native iOS and Android apps to enhance accessibility and user experience.
+- **Expansion of Regional Tokens**: Introduce more regional tokens to support local economies in various cities and regions.
+- **Enhanced DAO Features**: Develop more robust governance tools for greater community involvement.
+- **Integration with Other Web3 Services**: Link ChefConnect with other decentralized platforms to expand functionality and interoperability.
 
 ## Contributing
 
