@@ -1,6 +1,8 @@
 // constants/contract.js
-export const contractAddress = "0x324cf87A3A2B92FADBCDe6798c1a7ac9949c973b";
-
+export const contractAddresses = {
+  scrollTestnet: "0x324cf87A3A2B92FADBCDe6798c1a7ac9949c973b",
+  bnbTestnet: "0x74Ba9DC4ad8a89a9dcbB51D8a91E787096ED3E6F",
+};
 export const abi = [
   {
     inputs: [],

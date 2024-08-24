@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { BrowserProvider, Contract } from "ethers";
-import { abi, contractAddress } from "../../../constants/contract";
+import { abi, contractAddresses } from "../../../constants/contract"; // ネットワークごとのアドレス
 
 interface ChefProfile {
   address: string;
@@ -14,10 +14,11 @@ interface ChefProfile {
 export default function ViewChefs() {
   const [chefs, setChefs] = useState<ChefProfile[]>([]);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null); // 型をstring | nullに変更
+  const [error, setError] = useState<string | null>(null);
   const [amount, setAmount] = useState(""); // 送信するトークン量
   const [totalSupply, setTotalSupply] = useState(0); // トークンの全量
   const [userBalance, setUserBalance] = useState(0); // ユーザーのトークン残高
+  const [contractAddress, setContractAddress] = useState<string>("");
 
   useEffect(() => {
     const fetchChefsAndTokenDetails = async () => {
@@ -25,7 +26,7 @@ export default function ViewChefs() {
       setError(null);
 
       if (!window.ethereum) {
-        setError("MetaMask is not installed!"); // 文字列をエラーにセット
+        setError("MetaMask is not installed!");
         setLoading(false);
         return;
       }
@@ -33,11 +34,28 @@ export default function ViewChefs() {
       try {
         const provider = new BrowserProvider(window.ethereum);
         const signer = await provider.getSigner();
-        const contract = new Contract(contractAddress, abi, signer);
+        const network = await provider.getNetwork();
+
+        // ネットワークIDに基づいてコントラクトアドレスを選択
+        let selectedAddress = "";
+        switch (network.chainId) {
+          case BigInt(534351): // Scroll Testnet ID
+            selectedAddress = contractAddresses.scrollTestnet;
+            break;
+          case BigInt(97): // BNB Testnet ID
+            selectedAddress = contractAddresses.bnbTestnet;
+            break;
+          default:
+            setError("Unsupported network");
+            setLoading(false);
+            return;
+        }
+
+        setContractAddress(selectedAddress);
+        const contract = new Contract(selectedAddress, abi, signer);
 
         // シェフのプロファイルを取得
         const [addresses, profiles] = await contract.getChefProfiles();
-
         const formattedChefs = addresses.map(
           (address: string, index: number) => {
             const profile = profiles[index].toObject();
@@ -60,7 +78,6 @@ export default function ViewChefs() {
         const userAddress = await signer.getAddress();
         const balance = await contract.balanceOf(userAddress);
         setUserBalance(balance.toString());
-
       } catch (error: any) {
         console.error("Error fetching data:", error);
         setError(`Failed to fetch data: ${error.message || error}`);
@@ -91,6 +108,7 @@ export default function ViewChefs() {
 
       await contract.vote(chefAddress);
 
+      // 投票後、最新のデータを再取得
       const [addresses, profiles] = await contract.getChefProfiles();
       const formattedChefs = addresses.map((address: string, index: number) => {
         const profile = profiles[index].toObject();
@@ -138,7 +156,6 @@ export default function ViewChefs() {
       const userAddress = await signer.getAddress();
       const balance = await contract.balanceOf(userAddress);
       setUserBalance(balance.toString());
-
     } catch (error: any) {
       console.error("Error sending token:", error);
       setError(`Failed to send token: ${error.message || error}`);
@@ -202,7 +219,6 @@ export default function ViewChefs() {
             </tbody>
           </table>
 
-          {/* トークン量入力 */}
           <div className="mt-4">
             <input
               type="number"
@@ -217,7 +233,7 @@ export default function ViewChefs() {
             onClick={() => {
               window.location.href = "/";
             }}
-            className="bg-gray-500 text-white px-4 py-2 rounded-md"
+            className="bg-gray-500 text-white px-4 py-2 rounded-md mt-4"
           >
             Back to Home
           </button>
