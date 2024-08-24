@@ -14,6 +14,8 @@ type ProfileData = {
   specialty: string;
 };
 
+export const dynamic = 'force-dynamic'; // Ensure client-side rendering only
+
 export default function ChefProfilePage() {
   const { address, connector } = useAccount();
   const [initialData, setInitialData] = useState<ProfileData>({
@@ -21,46 +23,49 @@ export default function ChefProfilePage() {
     description: "",
     specialty: "",
   });
-
-  const fetchProfileData = async () => {
-    try {
-      const response = await fetch("/api/chefs/profile");
-      if (!response.ok) {
-        throw new Error("Failed to fetch profile data");
-      }
-      const data = await response.json();
-      setInitialData(data);
-    } catch (error) {
-      console.error("Failed to fetch profile data:", error);
-    }
-  };
+  const [loading, setLoading] = useState(true); // Loading state
 
   useEffect(() => {
+    const fetchProfileData = async () => {
+      try {
+        const response = await fetch("/api/chefs/profile");
+        if (!response.ok) {
+          throw new Error("Failed to fetch profile data");
+        }
+        const data = await response.json();
+        setInitialData(data);
+      } catch (error) {
+        console.error("Failed to fetch profile data:", error);
+        alert("Failed to fetch profile data. Please try again later.");
+      } finally {
+        setLoading(false); // End loading state
+      }
+    };
+
     fetchProfileData();
   }, []);
 
-  // Add type annotation to the profileData parameter
   const uploadToGreenfield = async (profileData: ProfileData) => {
     if (!address) {
       alert("Wallet address is missing");
       return;
     }
 
-    const spInfo = await selectSp();
-    const provider = await connector?.getProvider();
-    const offChainData = await getOffchainAuthKeys(address, provider);
-
-    if (!offChainData) {
-      alert("No offchain auth data available");
-      return;
-    }
-
-    const fileContent = JSON.stringify(profileData);
-    const file = new File([fileContent], `${address}.json`, {
-      type: "application/json",
-    });
-
     try {
+      const spInfo = await selectSp();
+      const provider = await connector?.getProvider();
+      const offChainData = await getOffchainAuthKeys(address, provider);
+
+      if (!offChainData) {
+        alert("No offchain auth data available");
+        return;
+      }
+
+      const fileContent = JSON.stringify(profileData);
+      const file = new File([fileContent], `${address}.json`, {
+        type: "application/json",
+      });
+
       const res = await client.object.delegateUploadObject(
         {
           bucketName: "chefs",
@@ -75,16 +80,19 @@ export default function ChefProfilePage() {
           address: address,
           domain: window.location.origin,
           seed: offChainData.seedString,
-        },
+        }
       );
 
       if (res.code === 0) {
         alert("Profile uploaded successfully to Greenfield!");
         window.location.href = "/";
+      } else {
+        alert("Failed to upload profile to Greenfield.");
+        console.error("Upload response:", res);
       }
     } catch (err) {
       console.error("Failed to upload profile to Greenfield:", err);
-      alert("Failed to upload profile to Greenfield");
+      alert("An error occurred while uploading the profile. Please try again.");
     }
   };
 
@@ -102,12 +110,18 @@ export default function ChefProfilePage() {
         alert("Profile updated successfully!");
         await uploadToGreenfield(profileData);
       } else {
-        alert("Failed to update profile.");
+        alert("Failed to update profile. Please try again.");
+        console.error("Failed to update profile:", await response.text());
       }
     } catch (error) {
       console.error("Failed to update profile:", error);
+      alert("An error occurred while updating the profile. Please try again.");
     }
   };
+
+  if (loading) {
+    return <div>Loading...</div>; // Show loading message while fetching data
+  }
 
   return <ChefProfileForm onSubmit={handleSubmit} initialData={initialData} />;
 }
