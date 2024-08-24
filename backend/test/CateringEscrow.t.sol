@@ -89,6 +89,7 @@ contract CateringEscrowTest is Test {
     }
 
     function test_VoteForChef() public {
+        // Submit a chef profile and vote for the chef
         escrow.submitChefProfile("Chef B", "Expert in Japanese Cuisine", "Sushi");
 
         vm.prank(voter);
