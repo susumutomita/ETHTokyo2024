@@ -6,7 +6,6 @@ import { Github, Twitter } from "@/components/shared/icons";
 import WebVitals from "@/components/home/web-vitals";
 import ComponentGrid from "@/components/home/component-grid";
 import Image from "next/image";
-import { ConnectKitButton } from "connectkit";
 
 export default function Home() {
   return (
@@ -36,8 +35,6 @@ export default function Home() {
           An opinionated collection of components, hooks, and utilities for your
           Next.js project.
         </p>
-        <ConnectKitButton />
-
         <div
           className="mx-auto mt-6 flex animate-fade-up items-center justify-center space-x-5 opacity-0"
           style={{ animationDelay: "0.3s", animationFillMode: "forwards" }}
