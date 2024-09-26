@@ -46,7 +46,7 @@
     "tailwind-merge": "^1.14.0",
     "use-debounce": "^9.0.4",
     "valid-url": "^1.0.9",
-    "vaul": "^0.6.8",
+    "vaul": "^0.9.9",
     "viem": "^2.20.0",
     "wagmi": "^2.12.7"
   },
